@@ -31,3 +31,16 @@ export async function getCourseById(id: string): Promise<Course> {
 export async function deleteCourseById(id: string): Promise<void> {
     await api.delete(`/courses/${id}`);
 }
+
+export async function updateCourseById(id: string, course: Partial<Course>): Promise<void> {
+    await api.put(`/courses/${id}`, course);
+}
+
+export async function patchCourseById(id: string, course: Partial<Course>): Promise<void> {
+    await api.patch(`/courses/${id}`, course);
+}
+
+export async function postCourse({ name, code, credits, nota, badge }: { name: string; code: string; credits: number; nota?: number; badge?: string }): Promise<string> {
+    const {data} = await api.post('/courses/new', { name, code, credits, nota, badge });
+    return data;
+}
