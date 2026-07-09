@@ -22,3 +22,12 @@ export async function getCourses(): Promise<Course[]> {
     const {data} = await api.get('/courses');
     return data;
 }
+
+export async function getCourseById(id: string): Promise<Course> {
+    const {data} = await api.get(`/courses/${id}`);
+    return data;
+}
+
+export async function deleteCourseById(id: string): Promise<void> {
+    await api.delete(`/courses/${id}`);
+}
